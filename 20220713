@@ -1,0 +1,120 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: MyStatefulWidget(),
+      ),
+    );
+  }
+}
+
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+
+  @override
+  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  double _currentSliderValue = 20;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(top: 40, left: 20),
+            child: Text(
+              "What's your spectrum?",
+              style: TextStyle(
+                  fontSize: 24, fontWeight: FontWeight.bold, height: 2.5),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 10, left: 20),
+            child: Text(
+              'Choose one that more likely relates to you.',
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 30, left: 20),
+            child: Text(
+              "Gender Identity",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Container(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: Slider(
+                        value: _currentSliderValue,
+                        min: 0,
+                        max: 100,
+                        divisions: 100,
+                        label: _currentSliderValue.round().toString(),
+                        onChanged: (double value) {
+                          setState(() {
+                            _currentSliderValue = value;
+                          });
+                        }),
+                  ),
+                ),
+                Container(
+                  width: 50,
+                  child: Text('aaa'),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Container(
+            padding: EdgeInsets.only(top: 40, left: 20),
+            child: Text(
+              "What's your spectrum?",
+              style: TextStyle(
+                  fontSize: 24, fontWeight: FontWeight.bold, height: 2.5),
+            )),
+        Container(
+          padding: EdgeInsets.only(top: 10, left: 20),
+          child: Text(
+            'Choose one that more likely relates to you.',
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(top: 30, left: 20),
+          child: Text(
+            "Gender Identity",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ],
+    );
+  }
+}
